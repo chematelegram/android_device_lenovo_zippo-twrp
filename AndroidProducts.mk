@@ -15,8 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_zippo.mk
+    $(LOCAL_DIR)/twrp_zippo.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_zippo-userdebug \
-    omni_zippo-eng
+    twrp_zippo-eng
