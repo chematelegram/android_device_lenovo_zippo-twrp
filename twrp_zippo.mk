@@ -15,34 +15,23 @@
 #
 
 # Only the below variable(s) need to be changed!
-#
-# Define hardware platform
-PRODUCT_PLATFORM := msmnile
 
-# The below variables will be generated automatically
-#
-# Release name (automatically taken from this file's suffix)
-PRODUCT_RELEASE_NAME := $(lastword $(subst /, ,$(lastword $(subst _, ,$(firstword $(subst ., ,$(MAKEFILE_LIST)))))))
-
-# Custom vendor used in build tree (automatically taken from this file's prefix)
-CUSTOM_VENDOR := $(lastword $(subst /, ,$(firstword $(subst _, ,$(firstword $(MAKEFILE_LIST))))))
-
-# Inherit from common AOSP config
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# Inherit from zippo device
+$(call inherit-product, device/lenovo/zippo/device.mk)
 
 # Inherit from our custom product configuration
-$(call inherit-product, vendor/$(CUSTOM_VENDOR)/config/common.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
 
-# OEM Info (automatically taken from device tree path)
-BOARD_VENDOR := $(or $(word 2,$(subst /, ,$(firstword $(MAKEFILE_LIST)))),$(value 2))
-
-## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
-PRODUCT_NAME := $(CUSTOM_VENDOR)_$(PRODUCT_DEVICE)
-PRODUCT_BRAND := $(BOARD_VENDOR)
-PRODUCT_MODEL := $(shell echo $(PRODUCT_BRAND) | tr  '[:lower:]' '[:upper:]')_$(PRODUCT_DEVICE)
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := zippo
+PRODUCT_NAME := twrp_zippo
+PRODUCT_BRAND := lenovo
+PRODUCT_MODEL := Z6 Pro
 PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
-
-# Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/device.mk)
+#
