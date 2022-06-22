@@ -71,6 +71,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 	export LC_ALL="C"
  	export ALLOW_MISSING_DEPENDENCIES=true
+ 	export FOX_DELETE_AROMAFM=1
 
 	# OTA for custom ROMs
 	export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
