@@ -17,7 +17,7 @@ Battery | Non-removable Li-Po 4000 mAh
 Display | 1080 x 2340 pixels, 19.5:9 ratio, 162.31 mm (6.39 in), Super AMOLED, HDR10 (~403 ppi density)
 Height | 157.5 mm (6.2 in)
 Width | 74.6 mm (2.94 in)
-Diameter | 8.7 mm (0.34 in) 
+Diameter | 8.7 mm (0.34 in)
 Weight | 185 g (6.53 oz)
 Build | Glass front, glass back, aluminum frame
 SIM | Hybrid Dual SIM (Nano-SIM, dual stand-by, dual Volte)
@@ -48,27 +48,20 @@ Works:
 
 ## Compile
 
-First checkout minimal twrp with omnirom tree:
+First checkout minimal twrp with AOSP tree:
 
 ```
-mkdir -p ~/android/twrp-11
-cd ~/android/twrp-11
-repo init -u git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
+mkdir -p ~/android/twrp-12.1
+cd ~/android/twrp-12.1
+repo init -u git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
 repo sync
 ```
 
 Then add these projects to .repo/manifest.xml:
 
 ```xml
-<project path="device/lenovo/zippo" name="TeamWin/android_device_lenovo_zippo" remote="github" revision="android-11" />
+<project path="device/lenovo/zippo" name="TeamWin/android_device_lenovo_zippo" remote="github" revision="android-12.1" />
 ```
-
-You need also of this commit in /build:
-
-```
-https://gerrit.omnirom.org/#/c/android_build/+/36483/
-```
-
 
 Finally execute these:
 
@@ -76,7 +69,7 @@ Finally execute these:
 . build/envsetup.sh
 export ALLOW_MISSING_DEPENDENCIES=true
 export LC_ALL=C
-lunch omni_zippo-eng
+lunch twrp_zippo-eng
 make recoveryimage
 ```
 
@@ -88,7 +81,7 @@ fastboot boot out/target/product/zippo/recovery.img
 
 ## Other Sources
 
-Kernel source: https://github.com/lenovo-sm8150/android_kernel_lenovo_sm8150/tree/twrp-11
+Kernel source: https://github.com/lenovo-sm8150/android_kernel_lenovo_sm8150/tree/twrp-12.1
 
 ## Thanks
 
