@@ -46,3 +46,6 @@ PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/device.mk)
+
+# Dynamic Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
