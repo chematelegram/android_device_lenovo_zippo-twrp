@@ -12,8 +12,8 @@
 /vendor_image  emmc   /dev/block/bootdevice/by-name/vendor                       flags=backup=1;display="Vendor_image";flashimg=1
 
 /metadata      ext4   /dev/block/bootdevice/by-name/metadata			 flags=backup=1;display="Metadata"
-/data          ext4   /dev/block/bootdevice/by-name/userdata                     flags=fileencryption=ice;keydirectory=/metadata/vold/metadata_encryption
-/data          f2fs   /dev/block/bootdevice/by-name/userdata                     flags=fileencryption=ice;keydirectory=/metadata/vold/metadata_encryption
+/data          ext4   /dev/block/bootdevice/by-name/userdata                     fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,quota
+/data          f2fs   /dev/block/bootdevice/by-name/userdata                     fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,quota
 
 /firmware      vfat   /dev/block/bootdevice/by-name/modem                        flags=display="Firmware";mounttodecrypt
 /modem         emmc   /dev/block/bootdevice/by-name/modem                        flags=backup=1;display="Modem"
