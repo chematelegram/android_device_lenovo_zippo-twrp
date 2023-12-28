@@ -156,6 +156,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libxml2 \
     vendor.display.config@1.0 \
     vendor.display.config@2.0
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
